@@ -1,8 +1,8 @@
 
 # There are 5 step to Databasae connectivity: #
 ---------------
-### 1. Register the Driver Class: ###
-## Explain: ##
+## 1. Register the Driver Class: ##
+### Explain: ###
    -> This step loads the JDBC driver class into memory. It's essential to load the driver class before connecting to the database.
    
    ### Example: ###
@@ -23,7 +23,8 @@
    -> This object is used to send SQL queries to the database. 
    -> You can create a statement using the createStatement() or prepareStatement() method of the Connection object.
    
-   Example: Statement statement = connection.createStatement();
+   ### Example: ###
+    Statement statement = connection.createStatement();
 
 ---------------
 ### 4. Execute SQL Queries: ###
@@ -32,7 +33,8 @@
          # you can execute SQL queries using the executeQuery() method for retrieving data
 		 # executeUpdate() method for performing data manipulation operations (like insert, update, delete).
 		 
-   Example: ResultSet resultSet = statement.executeQuery("SELECT * FROM table_name");
+   ### Example: ###
+   ResultSet resultSet = statement.executeQuery("SELECT * FROM table_name");
 
 ---------------  
 ### 5. Process the Results (if any): ###
@@ -40,7 +42,8 @@
    -> If you executed a query that returns results (e.g., a SELECT query), you need to process the results.
    -> This typically involves iterating over the ResultSet object to retrieve data.
    
-   Example: while (resultSet.next()) {    // Process each row of the result set
+   ### Example: ###
+   while (resultSet.next()) {    // Process each row of the result set
                   String columnName = resultSet.getString("column_name"); // Process data...
             }
 
