@@ -2,7 +2,7 @@
 # There are 5 step to Databasae connectivity: #
 ---------------
 ### 1. Register the Driver Class: ###
----------------
+## Explain: ##
    -> This step loads the JDBC driver class into memory. It's essential to load the driver class before connecting to the database.
    
    Example: Class.forName("com.mysql.cj.jdbc.Driver");
