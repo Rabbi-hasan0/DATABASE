@@ -15,16 +15,16 @@
    
    Example: Connection connection = DriverManager.getConnection(url, username, password);
 
-   
+---------------   
 ### 3. Create a Statement/PreparedStatement Object: ###
----------------
+
    -> Once the connection is established, you create a Statement or PreparedStatement object. 
    -> This object is used to send SQL queries to the database. 
    -> You can create a statement using the createStatement() or prepareStatement() method of the Connection object.
    
    Example: Statement statement = connection.createStatement();
 
-   
+---------------
 ### 4. Execute SQL Queries: ###
 ---------------
    -> After creating the statement object..
@@ -33,7 +33,7 @@
 		 
    Example: ResultSet resultSet = statement.executeQuery("SELECT * FROM table_name");
 
-   
+---------------  
 ### 5. Process the Results (if any): ###
 ---------------
    -> If you executed a query that returns results (e.g., a SELECT query), you need to process the results.
