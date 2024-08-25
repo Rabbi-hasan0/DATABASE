@@ -1,0 +1,125 @@
+User table:
+CREATE TABLE users(
+    u_id varchar (20),
+    name varchar (20),
+    address varchar (20),
+    PRIMARY KEY (u_id));
+Values-
+INSERT INTO users (u_id, name, address) VALUES
+('U1','Tarek','South Africa'),
+('U2','Nayeem','Dhaka'),
+('U3','Habib','Dhaka'),
+('U4','Tanvir','Halifax'),
+('U5','Hasina','India'),
+('U6','Zia','London'),
+('U7','Himel','America'),
+('U8','Joy','America'),
+('U9','Quader','Thakurgaon'),
+('U10','Polok','ICT Bhaban');
+
+Product table:
+CREATE TABLE product(
+    p_id varchar (20),
+    p_name varchar (20),
+    price varchar (20),
+    PRIMARY KEY (p_id));
+Values-
+INSERT INTO product(p_id,p_name,price) VALUES
+('P1','Mobile','50000'),
+('P2','TV','25000'),
+('P3','Fridge','60000'),
+('P4','AC','75000'),
+('P5','Freezer','45000'),
+('P6','Oven','15000'),
+('P7','Washing Machine','20000'),
+('P8','Toaster','3000'),
+('P9','Iron','2000'),
+('P10','Fan','5000');
+
+Order table:
+CREATE TABLE orders(
+    o_id varchar (20),
+    u_id varchar (20),
+    p_id varchar (20),
+    PRIMARY KEY (o_id),
+    FOREIGN KEY (u_id) REFERENCES users (u_id) ON DELETE CASCADE,
+    FOREIGN KEY (p_id) REFERENCES product (p_id) ON DELETE CASCADE);
+Values-
+INSERT INTO orders(o_id,u_id,p_id) VALUES
+('O1','U1','P10'),
+('O2','U2','P9'),
+('O3','U3','P8'),
+('O4','U4','P7'),
+('O5','U5','P6'),
+('O6','U6','P5'),
+('O7','U7','P4'),
+('O8','U8','P3'),
+('O9','U9','P2'),
+('O10','U10','P1');
+    
+
+
+
+25-08-24
+
+CREATE TABLE student(
+    s_id int,
+    name varchar(50),
+    age int,
+    CGPA numeric(3, 2),
+    PRIMARY KEY(s_id)
+);
+
+INSERT INTO student 
+VALUES 
+  (137, 'Santo', 23, 3.75),
+  (160, 'Murad', 23, 3.40),
+  (161, 'Anayat', 23, 3.00),
+  (162, 'Rabbi', 23, 3.50),
+  (168, 'Atik', 23, 3.45),
+  (171, 'Nayem', 23, 3.54),
+  (521, 'Tariful', 23, 3.70),
+  (141, 'Suchi', 23, 3.00),
+  (178, 'Jannat', 23, 3.00),
+  (145, 'Nabonita', 23, 3.85)
+
+vertically fragmentation of two table:
+CREATE TABLE student01 AS 
+SELECT s_id,name from student;
+
+CREATE TABLE student02 AS
+SELECT s_id, age, CGPA FROM student;
+
+SELECT* FROM student02;
+
+Now join these table:
+CREATE table new_student AS
+SELECT *FROM student01 NATURAL JOIN student02;
+
+CREATE TABLE department(
+    name varchar(50),
+    amount int,
+    no_of_student int
+    );
+
+INSERT INTO department
+VALUES 
+     ('Rabbi', 50000, 15),
+     ('Anayat', 40000, 20),
+     ('Anayat', 55000, 18),
+     ('Santo', 55000, 25),
+     ('Atik', 50000, 20),
+     ('Rabbi', 50000, 5),
+     ('Rabbi', 50000, 5),
+     ('Santo', 45000, 25),
+     ('Atik', 55000, 25),
+     ('Rabbi', 60000, 20);
+
+fragmentation of two table:
+# CREATE table depart01 AS
+   SELECT *FROM department where amount >= 50000;
+# CREATE table depart02 AS
+   SELECT *FROM department where amount < 50000;
+Now Join: 
+CREATE TABLE new_department AS
+SELECT * FROM depart01 UNION SELECT * FROM depart02;
