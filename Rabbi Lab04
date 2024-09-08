@@ -1,0 +1,56 @@
+CREATE TABLE Suppliers (
+    SupplierID int,
+    SupplierName varchar(100),
+    ContactName varchar(100),
+    PhoneNumber varchar(11),
+    Address varchar(100),
+    PRIMARY KEY (SupplierID)
+);
+CREATE TABLE Products (
+    ProductID int,
+    ProductName varchar(100),
+    Category varchar(100),
+    SupplierID int,
+    Price double,
+    PRIMARY KEY (ProductID),
+    FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID)
+);    
+
+INSERT INTO Suppliers VALUES 
+  (101, 'Tech Solution', 'Dustin', '555-1234', 'LA'),
+  (102, 'Gadget World', 'Smith', '555-5678', 'NY'),
+  (103, 'Tech Solution', 'Steve', '555-9876', 'Texas'),
+  (104, 'Tech Solution', 'Smith', '555-6543', 'NY'),
+  (105, 'Tech Solution', 'Jake', '555-4321', 'Texas');
+  
+INSERT INTO Products VALUES 
+  (1, 'Laptop', 'Electronics',101, 999.99),
+  (2, 'Wireless Mouse', 'Electronics',102, 25.99),
+  (3, 'Office Chair', 'Furniture',103, 150.00),
+  (4, 'Desk Lamp', 'Furniture',104, 45.00),
+  (5, 'Smartphone', 'Electronics',101, 599.99),
+  (6, 'Printer', 'Electronics',105, 120.00),
+  (7, 'Desk', 'Furniture',103, 300.00),
+  (8, 'Monitor', 'Electronics',102, 200.00),
+  (9, 'Key Board', 'Electronics',101, 50.00),
+  (10, 'Bookshelf', 'Furniture',104, 85.00);
+  
+  
+SELECT* FROM Suppliers 
+WHERE Address = 'LA';
+
+//Fragmentation:
+Table 01:
+CREATE TABLE Supplier01 AS SELECT* FROM Suppliers WHERE Address = 'LA';
+CREATE TABLE Supplier02 AS SELECT* FROM Suppliers WHERE Address = 'NY';
+CREATE TABLE Supplier03 AS SELECT* FROM Suppliers WHERE Address = 'Texas';
+
+Table 02:
+CREATE TABLE P1 AS SELECT* FROM Products WHERE Category = 'Electronics' and Price < 300.00;
+CREATE TABLE P2 AS SELECT* FROM Products WHERE Category = 'Electronics' and Price >= 300.00;
+CREATE TABLE P3 AS SELECT* FROM Products WHERE Category != 'Electronics' and Price < 300.00;
+CREATE TABLE P4 AS SELECT* FROM Products WHERE Category != 'Electronics' and Price >= 300.00;
+
+SELECT * FROM `P1` WHERE 1
+
+
